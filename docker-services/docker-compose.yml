@@ -1,0 +1,136 @@
+version: '3.7'
+services:
+  mysql:
+    shm_size: 1000000000
+    build:
+      context: ./mysql/
+      dockerfile: ./Dockerfile
+    container_name: baz-mysql
+    tty: true
+    command: --innodb_use_native_aio=0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+
+    volumes:
+      - ./mysql/mysql-data/:/var/lib/mysql/
+    ports:
+      - "3306:3306"
+  wsgi:
+    shm_size: 1000000000
+    container_name: baz-wsgi
+    restart: always
+    build:
+      context: ../
+      dockerfile: docker-services/python/Dockerfile
+    tty: true
+    volumes:
+      - ../:/home/centos
+    depends_on:
+      - mysql
+      - rabbitMQ
+    command: python3.8 baz/baz/manage.py runserver 0.0.0.0:8080
+    env_file:
+      - ../baz/.env
+
+  wsgi-scheduelr:
+    shm_size: 1000000000
+    container_name: baz-wsgi-scheduler
+    restart: always
+    build:
+      context: ../
+      dockerfile: docker-services/python/scheduler/Dockerfile
+    tty: true
+    volumes:
+      - ../:/home/centos
+    depends_on:
+      - mysql
+      - rabbitMQ
+    command: python3.8 scheduler/manage.py runserver 0.0.0.0:8082
+    env_file:
+      - ../scheduler/.env
+
+  wsgi-scheduelr-timer-stop-wroker01:
+    shm_size: 1000000000
+    container_name: wsgi-scheduelr-timer-stop-wroker01
+    restart: always
+    build:
+      context: ../
+      dockerfile: docker-services/python/scheduler/Dockerfile
+    tty: true
+    volumes:
+      - ../:/home/centos
+    depends_on:
+      - mysql
+      - rabbitMQ
+      - redis
+    command: python3.8 -m workers.timers.stop
+    env_file:
+      - ../scheduler/.env
+
+
+  wsgi-scheduelr-timer-add-wroker01:
+    shm_size: 1000000000
+    container_name: wsgi-scheduelr-timer-add-wroker01
+    restart: always
+    build:
+      context: ../
+      dockerfile: docker-services/python/scheduler/Dockerfile
+    tty: true
+    volumes:
+      - ../:/home/centos
+    depends_on:
+      - mysql
+      - rabbitMQ
+      - redis
+    command: python3.8 -m workers.timers.add
+    env_file:
+      - ../scheduler/.env
+
+  wsgi-scheduelr-timer-add-wroker02:
+    shm_size: 1000000000
+    container_name: wsgi-scheduelr-timer-add-wroker02
+    restart: always
+    build:
+      context: ../
+      dockerfile: docker-services/python/scheduler/Dockerfile
+    tty: true
+    volumes:
+      - ../:/home/centos
+    depends_on:
+      - mysql
+      - rabbitMQ
+      - redis
+    command: python3.8 -m workers.timers.add
+    env_file:
+      - ../scheduler/.env
+
+  nginx:
+    container_name: baz-nginx
+    build: ./nginx
+    restart: always
+    tty: true
+    links:
+      - wsgi
+      - wsgi-scheduelr
+
+    ports:
+      - "80:80"
+      - "8082:8082"
+
+  rabbitMQ:
+    image: rabbitmq:3-management
+    container_name: baz-rabbit
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+
+  redis:
+    build:
+      context: ./redis/
+      dockerfile: ./Dockerfile
+    container_name: baz-redis
+    volumes:
+      - ./redis/data/:/data
+    ports:
+      - "6379:6379"
