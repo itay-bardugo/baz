@@ -26,7 +26,8 @@ SECRET_KEY = 'd0pwx=avr7+*zwghpr)9ynckdg5kvr2aw1+be!#k8xi2_5&gy('
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'baz-wsgi-scheduler'
+    'baz-wsgi-scheduler',
+    'localhost'
 ]
 
 # Application definition
