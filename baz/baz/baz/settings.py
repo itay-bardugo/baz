@@ -24,7 +24,7 @@ SECRET_KEY = 'xjmucs@h7$uhtlu(b_=5ae(sx2(u3wa+cyqo1xqlh1(=1yw==j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['baz-wsgi']
 
 # Application definition
 
