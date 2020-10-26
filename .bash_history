@@ -121,3 +121,4 @@ python3.8 baz/baz/manage.py migrate
 python3.8 baz/baz/manage.py migrate
 exot
 exit
+exit
