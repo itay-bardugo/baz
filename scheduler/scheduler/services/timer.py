@@ -1,9 +1,10 @@
 from scheduler.repository.timer import TimerRepository
-from scheduler.seriazliers.new_task import NewTimerSerializer, StopTimerSerializer
+from scheduler.seriazliers.new_task import NewTimerSerializer
 from scheduler import exceptions
 from timers.models import Timer
-from scheduler.services.message_queue.clients.rabbit.task_queue import RabbitTaskQueueAdapter
+from scheduler.global_services.message_queue.clients.rabbit.task_queue import RabbitTaskQueueAdapter
 import json
+import datetime
 
 
 class TimerService:
@@ -18,6 +19,10 @@ class TimerService:
             timer = Timer()
             timer.status = timer.PENDING
             timer.action_date = request.data["action_date"]
+
+            if datetime.datetime.now() >= timer.action_date.replace(tzinfo=None):
+                raise exceptions.ApiError(exceptions.INVALID_REQUEST)
+
             timer.return_address = request.data["return_address"]
             timer.param = request.data.get("param", "")
             self._repository.save(timer)
