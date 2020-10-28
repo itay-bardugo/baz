@@ -50,6 +50,23 @@ services:
     env_file:
       - ../scheduler/.env
 
+  wsgi-mailer:
+    shm_size: 1000000000
+    container_name: baz-wsgi-mailer
+    restart: always
+    build:
+      context: ../
+      dockerfile: docker-services/python/mailer/Dockerfile
+    tty: true
+    volumes:
+      - ../:/home/centos
+    depends_on:
+      - mysql
+      - rabbitMQ
+    command: python3.8 mailer/manage.py runserver 0.0.0.0:8083
+    env_file:
+      - ../mailer/.env
+
   wsgi-scheduelr-timer-stop-wroker01:
     shm_size: 1000000000
     container_name: wsgi-scheduelr-timer-stop-wroker01
@@ -90,6 +107,90 @@ services:
       mode: replicated
       replicas: 2
 
+  wsgi-mailer_start-worker:
+    shm_size: 1000000000
+    #container_name: wsgi-scheduelr-timer-add-wroker01
+    restart: always
+    build:
+      context: ../
+      dockerfile: docker-services/python/mailer/Dockerfile
+    tty: true
+    volumes:
+      - ../:/home/centos
+    depends_on:
+      - mysql
+      - rabbitMQ
+      - redis
+    command: python3.8 -m workers.emails.start
+    env_file:
+      - ../mailer/.env
+#    deploy:
+#      mode: replicated
+#      replicas: 4
+
+  wsgi-mailer_send-worker:
+    shm_size: 1000000000
+    #container_name: wsgi-scheduelr-timer-add-wroker01
+    restart: always
+    build:
+      context: ../
+      dockerfile: docker-services/python/mailer/Dockerfile
+    tty: true
+    volumes:
+      - ../:/home/centos
+    depends_on:
+      - mysql
+      - rabbitMQ
+      - redis
+    command: python3.8 -m workers.emails.send
+    env_file:
+      - ../mailer/.env
+  #    deploy:
+  #      mode: replicated
+  #      replicas: 4
+
+
+  wsgi-mailer_log-worker:
+    shm_size: 1000000000
+    #container_name: wsgi-scheduelr-timer-add-wroker01
+    restart: always
+    build:
+      context: ../
+      dockerfile: docker-services/python/mailer/Dockerfile
+    tty: true
+    volumes:
+      - ../:/home/centos
+    depends_on:
+      - mysql
+      - rabbitMQ
+      - redis
+    command: python3.8 -m workers.emails.log
+    env_file:
+      - ../mailer/.env
+  #    deploy:
+  #      mode: replicated
+  #      replicas: 4
+
+  wsgi-bazinga_report-worker:
+    shm_size: 1000000000
+    #container_name: wsgi-scheduelr-timer-add-wroker01
+    restart: always
+    build:
+      context: ../
+      dockerfile: docker-services/python/mailer/Dockerfile
+    tty: true
+    volumes:
+      - ../:/home/centos
+    depends_on:
+      - mysql
+      - rabbitMQ
+      - redis
+    command: python3.8 -m workers.bazinga.report
+    env_file:
+      - ../baz/.env
+    #    deploy:
+    #      mode: replicated
+    #      replicas: 4
   nginx:
     container_name: baz-nginx
     build: ./nginx
@@ -102,6 +203,7 @@ services:
     ports:
       - "80:80"
       - "8082:8082"
+      - "8083:8083"
 
   rabbitMQ:
     image: rabbitmq:3-management

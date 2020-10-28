@@ -122,3 +122,66 @@ python3.8 baz/baz/manage.py migrate
 exot
 exit
 exit
+ls -l
+cd mailer/
+ls -l
+python3.8 manage.py createsuperuser
+exit
+cd mailer/
+python3.8 manage.py createsuperuser
+python3.8 manage.py makemigrations
+python3.8 manage.py migrate
+python3.8 manage.py createsuperuser
+python3.8 manage.py createsuperuser
+exit
+ls -l
+cd baz/
+ls -l
+cd baz/
+ls -l
+python3.8 manage.py makemigrations customers
+python3.8 manage.py makemigrations customers
+python3.8 -m manage.py makemigrations customers
+python3.8 manage.py makemigrations customers
+python3.8 manage.py makemigrations customers
+cd ..
+cd ..
+python3.8 manage.py baz/baz/makemigrations customers
+cd baz/
+python3.8 manage.py baz/baz/makemigrations customers
+python3.8 baz/baz/manage.py makemigrations customers
+python3.8 baz/manage.py makemigrations customers
+cd ..
+python3.8 baz/baz/manage.py makemigrations customers
+cd ..
+python3.8 baz/baz/manage.py makemigrations customers
+python3.8 baz/baz/baz/manage.py makemigrations customers
+pwd
+ls -l
+cd centos/
+python3.8 baz/baz/baz/manage.py makemigrations customers
+python3.8 baz/baz/manage.py makemigrations customers
+python3.8 baz/baz/manage.py makemigrations customers
+pwd
+ls -l
+python3.8 baz/baz/manage.py makemigrations customers
+python3.8 baz/baz/manage.py makemigrations customers
+python3.8 baz/baz/manage.py makemigrations customers
+python3.8 baz/baz/manage.py makemigrations customers
+python3.8 baz/baz/manage.py makemigrations customers
+python3.8 baz/baz/manage.py makemigrations customers
+python3.8 baz/baz/manage.py makemigrations customers
+python3.8 baz/baz/manage.py makemigrations customers
+python3.8 baz/baz/manage.py makemigrations customers
+python3.8 baz/baz/manage.py migrate 
+exit
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py makemigrations customers
+python3.8 baz/baz/manage.py migrate 
+exit
+ls -l
+cd baz/
+ls -l
+cd baz/
+ls -l
+exit

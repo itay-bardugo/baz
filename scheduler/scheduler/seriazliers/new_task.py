@@ -10,7 +10,8 @@ class NewTimerSerializer(serializers.Serializer):
         pass
 
     return_address = serializers.CharField(required=True)
-    action_date = serializers.DateTimeField(required=True)
+    action_date = serializers.DateTimeField(required=False)
+    interval = serializers.IntegerField(required=True)
     param = serializers.CharField(required=False)
 
 

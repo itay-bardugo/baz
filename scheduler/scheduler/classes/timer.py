@@ -5,7 +5,7 @@ from scheduler.helperes import redis as redis_helper
 from scheduler.repository.timer import TimerRepository
 from datetime import datetime, timedelta
 import requests
-
+import time
 
 class StoppableTimer(Thread):
     def __init__(self, timer_id, *args, **kwargs):
@@ -22,7 +22,6 @@ class StoppableTimer(Thread):
               self._timer.action_date.replace(tzinfo=None).__str__())
         self._timer.thread_id = self.ident
         self._timer.status = self._timer.SETTING_UP
-        self._timer.sleep_time = (self._timer.action_date.replace(tzinfo=None) - now).seconds
         self.update_timer()
         try:
             self._run()
@@ -36,20 +35,21 @@ class StoppableTimer(Thread):
         self._timer.status = self._timer.RUNNING
         if self._has_stop_signal():
             self._stop()
-            return
+            raise Exception("Timer stopped")
 
         if self._should_notify():
             self._notify()
 
         if self._timer.status == self._timer.FAILED:
-            return
+            print("{} : Failed".format(self.ident))
+            raise Exception("Timer Failed")
 
     def _should_notify(self):
         return datetime.utcnow() >= self._timer.action_date.replace(tzinfo=None)
 
     def _update_next_notification(self):
         self._timer.action_date += timedelta(seconds=self._timer.sleep_time)
-        print("{} : next schedule time is: ".format(self._timer.action_date))
+        print("next schedule time is: {}".format(self._timer.action_date))
 
     def _notify(self):
         try:
