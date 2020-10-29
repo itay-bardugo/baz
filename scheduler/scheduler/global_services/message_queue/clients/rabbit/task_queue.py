@@ -1,5 +1,5 @@
-from scheduler.services.message_queue.abstracts.task_queue import TaskQueue
-from scheduler.services.message_queue.clients.rabbit.client import RabbitMQClient
+from scheduler.global_services.message_queue.abstracts.task_queue import TaskQueue
+from scheduler.global_services.message_queue.clients.rabbit.client import RabbitMQClient
 import os
 import pika
 

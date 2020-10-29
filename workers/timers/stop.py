@@ -1,4 +1,4 @@
-from scheduler.services.message_queue.clients.rabbit.task_queue import RabbitTaskQueueAdapter
+from scheduler.global_services.message_queue.clients.rabbit.task_queue import RabbitTaskQueueAdapter
 from scheduler.helperes import redis
 from scheduler.repository.timer import TimerRepository
 import json

@@ -1,6 +1,6 @@
 INVALID_REQUEST = 1
 SERVICE_UNREACHABLE = 2
-import json
+ACTION_DATE_NOT_VALID = 3
 
 
 class ApiError(BaseException):

@@ -20,9 +20,8 @@ def new(request):
     return JsonResponse(response)
 
 
-
 @require_http_methods(['POST'])
-@ csrf_exempt
+@csrf_exempt
 def stop(request, signature):
     service = TimerService()
     try:

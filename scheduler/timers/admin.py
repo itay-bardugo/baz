@@ -4,6 +4,7 @@ from .models import Timer
 
 class TimerAdmin(admin.ModelAdmin):
     readonly_fields = ("action_date", 'thread_id', 'sleep_time', 'signature', 'status', "param", "return_address")
+    list_display = ('id', 'thread_id', 'status',  'signature', 'sleep_time', "return_address", "param",  "action_date")
 
     def has_add_permission(self, request):
         return False
