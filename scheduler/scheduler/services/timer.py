@@ -19,12 +19,11 @@ class TimerService:
             action_date_input = request.data.get("action_date", "")
             timer = Timer()
             timer.status = timer.PENDING
-            timer.action_date = action_date_input or datetime.datetime.now()
+            timer.action_date = datetime.datetime.strptime(action_date_input, '%Y-%m-%dT%H:%M:%SZ') or datetime.datetime.now()
             timer.sleep_time = request.data["interval"]
             if action_date_input and datetime.datetime.now() >= timer.action_date.replace(tzinfo=None):
                 # timer start time not valid
                 raise exceptions.ApiError(exceptions.INVALID_REQUEST)
-
             timer.return_address = request.data["return_address"]
             timer.param = request.data.get("param", "")
             self._repository.save(timer)
