@@ -185,3 +185,99 @@ ls -l
 cd baz/
 ls -l
 exit
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py migrate 
+exit
+python3.8 baz/baz/manage.py makemigrations
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py makemigrations
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py makemigrations
+python3.8 baz/baz/manage.py makemigrations
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py makemigrations
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py makemigrations
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py makemigrations
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py makemigrations
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py makemigrations
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py makemigrations ב�customers
+python3.8 baz/baz/manage.py makemigrations �customers
+python3.8 baz/baz/manage.py makemigrations customers
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py makemigrations customer
+python3.8 baz/baz/manage.py makemigrations customerss
+python3.8 baz/baz/manage.py makemigrations customers
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py migrate --fake
+python3.8 baz/baz/manage.py makemigrations customers
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py makemigrations customers
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py makemigrations customers
+python3.8 baz/baz/manage.py migrate 
+python3.8 baz/baz/manage.py migrate --כשלק
+python3.8 baz/baz/manage.py migrate --כשfake
+python3.8 baz/baz/manage.py migrate --�-fake
+python3.8 baz/baz/manage.py migrate --fake
+python3.8 baz/baz/manage.py makemigrations customer
+python3.8 baz/baz/manage.py makemigrations customers
+python3.8 baz/baz/manage.py makemigrations customers
+python3.8 baz/baz/manage.py migrate
+python3.8 baz/baz/manage.py migrate
+python3.8 baz/baz/manage.py migrate
+python3.8 baz/baz/manage.py migrate
+exit
+uptime
+top
+exit
+python3.8 baz/baz/manage.py makemigrations customers
+python3.8 baz/baz/manage.py migrate
+python3.8 baz/baz/manage.py migrate
+exit
+python3.8 baz/baz/manage.py makemigrations customers
+python3.8 baz/baz/manage.py makemigrations customers
+python3.8 baz/baz/manage.py migrate
+python3.8 baz/baz/manage.py makemigrations customers
+python3.8 baz/baz/manage.py migrate
+python3.8 baz/baz/manage.py makemigrations customers
+python3.8 baz/baz/manage.py makemigrations customers
+python3.8 baz/baz/manage.py makemigrations customers
+python3.8 baz/baz/manage.py migrate
+python3.8 baz/baz/manage.py makemigrations customers
+python3.8 baz/baz/manage.py migrate
+python3.8 baz/baz/manage.py makemigrations customers
+python3.8 baz/baz/manage.py makemigrations customers
+python3.8 baz/baz/manage.py migrate
+python3.8 baz/baz/manage.py makemigrations customers
+python3.8 baz/baz/manage.py migrate
+python3.8 baz/baz/manage.py makemigrations customers
+python3.8 baz/baz/manage.py migrate
+python3.8 baz/baz/manage.py sehll
+python3.8 baz/baz/manage.py shell
+exit

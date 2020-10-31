@@ -24,6 +24,8 @@ class StoppableTimer(Thread):
         self._timer.status = self._timer.SETTING_UP
         self.update_timer()
         try:
+            self._timer.status = self._timer.RUNNING
+            self.update_timer()
             self._run()
             while not self._event.wait(10):
                 self._run()
